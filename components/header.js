@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function Header() {
-  const [isWalletConnected, setIsWalletConnected] = useState(false);
+function Header(props) {
   const [metamaskMessage, setMetamaskMessage] = useState(false);
   var user = null;
   
@@ -11,7 +10,7 @@ function Header() {
                 if(user == null) {
                     user = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     if(user != null) {
-                        setIsWalletConnected(true);
+                        pros.setIsWalletConnected(true);
                     }
                 }
             } else {
@@ -24,9 +23,9 @@ function Header() {
   
   useEffect(() => {
      if(user) {
-         setIsWalletConnected(true);
+         props.setIsWalletConnected(true);
      } else {
-         setIsWalletConnected(false);
+         props.setIsWalletConnected(false);
      }
   }, []);
   
@@ -52,7 +51,7 @@ function Header() {
                 <a href="/index">Home</a>
               </li>
               
-              {isWalletConnected ? (
+              {props.isWalletConnected ? (
                 <div>
                   <li style={{display: 'inline'}}>
                     <a href="/buy-tickets">Buy Tickets</a>
@@ -69,7 +68,7 @@ function Header() {
                   </li>
                 </div>
               ) : null}
-              {!isWalletConnected?
+              {!props.isWalletConnected?
                 <li>
                     <a href="#" id="connect" onClick={handleConnectWallet}>
                       Connect Wallet
