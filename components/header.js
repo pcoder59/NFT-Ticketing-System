@@ -10,7 +10,7 @@ function Header(props) {
                 if(user == null) {
                     user = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     if(user != null) {
-                        pros.setIsWalletConnected(true);
+                        props.setIsWalletConnected(true);
                     }
                 }
             } else {
