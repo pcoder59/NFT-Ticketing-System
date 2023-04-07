@@ -48,7 +48,7 @@ function Header(props) {
           <nav>
             <ul>
               <li>
-                <a href="/index">Home</a>
+                <a href="/">Home</a>
               </li>
               
               {props.isWalletConnected ? (
